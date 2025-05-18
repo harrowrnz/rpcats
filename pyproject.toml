@@ -1,7 +1,7 @@
 [project]
 name = "rpcats"
 version = "0.1.0"
-description = "Add your description here"
+description = "RealPython uv Project Tutorial, also using local Git & GitHub"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
