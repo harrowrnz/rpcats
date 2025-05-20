@@ -3,6 +3,9 @@
 ## Background
 
 See [Managing Python Projects With uv: An All-in-One Solution – Real Python](https://realpython.com/python-uv/)
+> :information_source: **Note**:
+> Most of the intial part of this document was done using Ubuntu 25.04 before moving onto a Mac, so most installation commands will relate to Ubuntu rather than MacOS.
+> Assumption is that local git client is already installed.
 
 ## Tutorial Synopsis
 
@@ -34,7 +37,8 @@ In parent directory (above where you want the project), run:
 uv init rpcats
 ```
 
-This will create the following structure with a placeholder main.py
+This will create the following structure with a placeholder main.py  
+Note that the git scaffolding is also created with a `.git` folder and a `.gitignore` file
 
 ```shell
 rpcats/
@@ -46,13 +50,13 @@ rpcats/
 └── README.md
 ```
 
-### Using Git for Version Control
+### Using Git with GitHub for Version Control
 
 [https://docs.github.com/en/get-started/using-git/about-git](https://docs.github.com/en/get-started/using-git/about-git) 
 
 [https://docs.github.com/en/get-started/start-your-journey/hello-world](https://docs.github.com/en/get-started/start-your-journey/hello-world)
 
-#### Setup
+#### Local Git Configuration
 
 Tell git who I am:
 
@@ -79,7 +83,10 @@ core.bare=false
 core.logallrefupdates=true
 ```
 
-Main GitHub 'Getting Started' URL above suggests this basic workflow for setting up a Git Repo. Note that you have to create a new blank repo on GitHub first, either using GUI or GitHub CLI (`gh`).
+#### GitHub Generic "Getting Started" Workflow
+> **Note**:
+[GitHub: Getting Started](https://docs.github.com/en/get-started/using-git/about-git) suggests this basic workflow for setting up a Git Repo.  
+Note that you have to create a new blank repo on GitHub first, either using GUI or GitHub CLI (`gh`).
 
 ```shell
 # create a new directory, and initialize it with git-specific functions
@@ -105,13 +112,14 @@ git push --set-upstream origin main
 ```
 
 #### Create local Git repo
+As uv already scaffolds a git repo as part of creating a uv project, creating the repo (as per previous section) isnt necessary.
 
 First of all, check current status of git repo:
 
 ```shell
 git status
 
-On branch master
+On branch main
 
 No commits yet
 
@@ -139,7 +147,7 @@ Now show current git status again:
 ```shell
 git status
 
-On branch master
+On branch main
 
 No commits yet
 
@@ -387,7 +395,7 @@ To https://github.com/harrowrnz/rpcats.git
 
 #### Merge Feature to main (See Note)
 
-> **Note:** I think you should do a pull request in GitHub to merge a feature to main, doing it this way somewhat breaks the model if you had multiple people working on the repo.
+> **Note**: I think you should do a pull request in GitHub to merge a feature to main, doing it this way somewhat breaks the model if you had multiple people working on the repo.
 
 Change into to main branch
 
