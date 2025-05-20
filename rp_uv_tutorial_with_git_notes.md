@@ -3,17 +3,17 @@
 ## Background
 
 See [Managing Python Projects With uv: An All-in-One Solution – Real Python](https://realpython.com/python-uv/)
+
 > :information_source: **Note**:
 > Most of the intial part of this document was done using Ubuntu 25.04 before moving onto a Mac, so most installation commands will relate to Ubuntu rather than MacOS.
 > Assumption is that local git client is already installed.
 
-## Tutorial Synopsis
-
-### Install uv
+## Install uv
 
 #### Ubunutu
 
 On Ubutunu, snap is the easiest as it should auto-update, though isnt always the absolutely latest release
+
 ```shell
 sudo snap install astral-uv --classic
 ```
@@ -21,11 +21,12 @@ sudo snap install astral-uv --classic
 #### Mac
 
 install using homebrew and then will again, be auto-updated.
+
 ```shell
 brew install uv
 ```
 
-### Create uv Project
+## Create uv Project
 
 > **Note**: 
 > 
@@ -50,13 +51,13 @@ rpcats/
 └── README.md
 ```
 
-### Using Git with GitHub for Version Control
+## Using Git & GitHub for Version Control
 
 [https://docs.github.com/en/get-started/using-git/about-git](https://docs.github.com/en/get-started/using-git/about-git) 
 
 [https://docs.github.com/en/get-started/start-your-journey/hello-world](https://docs.github.com/en/get-started/start-your-journey/hello-world)
 
-#### Local Git Configuration
+### Local Git Configuration
 
 Tell git who I am:
 
@@ -83,10 +84,11 @@ core.bare=false
 core.logallrefupdates=true
 ```
 
-#### GitHub Generic "Getting Started" Workflow
+### GitHub Generic "Getting Started" Workflow
+
 > **Note**:
-[GitHub: Getting Started](https://docs.github.com/en/get-started/using-git/about-git) suggests this basic workflow for setting up a Git Repo.  
-Note that you have to create a new blank repo on GitHub first, either using GUI or GitHub CLI (`gh`).
+> [GitHub: Getting Started](https://docs.github.com/en/get-started/using-git/about-git) suggests this basic workflow for setting up a Git Repo.  
+> Note that you have to create a new blank repo on GitHub first, either using GUI or GitHub CLI (`gh`).
 
 ```shell
 # create a new directory, and initialize it with git-specific functions
@@ -111,7 +113,8 @@ git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
 git push --set-upstream origin main
 ```
 
-#### Create local Git repo
+### Create local Git repo
+
 As uv already scaffolds a git repo as part of creating a uv project, creating the repo (as per previous section) isnt necessary.
 
 First of all, check current status of git repo:
@@ -182,7 +185,7 @@ On branch main
 nothing to commit, working tree clean
 ```
 
-#### Create New Repo in GitHub
+### Create New Repo in GitHub
 
 Will need to install `gh` (GitHub CLI) if not already installed.
 
@@ -235,7 +238,7 @@ gh repo create
 ? Add a remote? No
 ```
 
-#### Push Local Repo to GitHub Repo
+### Push Local Repo to GitHub Repo
 
 ```shell
 git remote add origin https://github.com/harrowrnz/rpcats.git
@@ -259,7 +262,7 @@ To https://github.com/harrowrnz/rpcats.git
 branch 'main' set up to track 'origin/main'.
 ```
 
-#### Create New Git Branch
+### Create New Git Branch
 
 As an experiment in branching, Im going to create a new feature prior to updating the base uv project files.
 
@@ -290,7 +293,7 @@ To https://github.com/harrowrnz/rpcats.git
 branch 'initial_base_project_updates' set up to track 'origin/initial_base_project_updates'.
 ```
 
-#### Update Base Project Files
+### Update Base Project Files
 
 Ive updated the Description field in `pyproject.toml`
 
@@ -354,7 +357,7 @@ To https://github.com/harrowrnz/rpcats.git
 branch 'initial_base_project_updates' set up to track 'origin/initial_base_project_updates'.
 ```
 
-Updated README.md
+Updated `README.md`
 
 ```shell
 git status
@@ -377,7 +380,7 @@ git commit -a -m "Updated README.md"
  1 file changed, 11 insertions(+)
 ```
 
-Push
+Push to GitHub
 
 ```shell
 git push
@@ -393,9 +396,18 @@ To https://github.com/harrowrnz/rpcats.git
    bb3ca6f..718dfab  initial_base_project_updates -> initial_base_project_updates
 ```
 
-#### Merge Feature to main (See Note)
+### Merge Feature to main (See Note)
 
-> **Note**: I think you should do a pull request in GitHub to merge a feature to main, doing it this way somewhat breaks the model if you had multiple people working on the repo.
+> :information_source: **Note**:
+> I think you should do a pull request in GitHub to merge a feature to main. Doing it this way somewhat breaks the model if you had multiple people working on the repo. 
+> 
+> ChatGPT has provided me some suggestions for the GitHub config, as well as local git hook setup to stop merges to main locally.
+
+
+
+- [ ]  :memo: **TODO**: Add suggested github and git local hook suggestions
+
+
 
 Change into to main branch
 
@@ -453,7 +465,7 @@ To https://github.com/harrowrnz/rpcats.git
 
 After this, i went onto GitHub GUI and deleted the branch I had been working in, so only had main.
 
-#### Re-Sync local Repo with GitHub
+### Re-Sync local Repo with GitHub
 
 To force a sync back to local repo from GitHub after the above merge to main and deleting the branch:
 
@@ -471,9 +483,9 @@ git branch --list
 * main
 ```
 
-### First Run of Project
+## First Run of Project
 
-#### Check out new feature branch in Git
+### Check out new feature branch in Git
 
 ```shell
 git checkout main
@@ -504,9 +516,10 @@ On branch initial_development
 nothing to commit, working tree clean
 ```
 
-#### Run Project for First Time
+### Run Project for First Time
 
-Change into the rpcats folder and then run project for first time. This will create the venv (`.venv` folder) automatically and will also create a new file, `uv.lock`
+Change into the rpcats folder and then run project for first time.  
+This will create the venv (`.venv` folder) automatically and will also create a new file, `uv.lock`
 
 ```shell
 uv run main.py
@@ -515,6 +528,8 @@ Using CPython 3.13.3 interpreter at: /usr/bin/python3.13
 Creating virtual environment at: .venv
 Hello from rpcats!
 ```
+
+### Review Changes and Update Git
 
 ```shell
 git status
@@ -548,6 +563,8 @@ git commit -a -m "rpcats project - post first \"uv run main.py\""
  create mode 100644 uv.lock
 ```
 
+### Push to GitHub
+
 ```shell
 git push --set-upstream origin initial_development
 
@@ -565,4 +582,39 @@ remote:
 To https://github.com/harrowrnz/rpcats.git
  * [new branch]      initial_development -> initial_development
 branch 'initial_development' set up to track 'origin/initial_development'.
+```
+
+## Move Computer (GitHub & Git)
+
+After several additional changes to files in `initia_development` branch, I pushed to Git and then moved over to my main workstation. The Ubuntu box I was intially working on is primarily a docker server and I just happened to be on there when I started the tutorial. Good test for using multiple computers with a remote repo 😃
+
+### Clone Repo from GitHub
+
+```shell
+git clone https://github.com/harrowrnz/rpcats.git
+
+Cloning into 'rpcats'...
+remote: Enumerating objects: 34, done.
+remote: Counting objects: 100% (34/34), done.
+remote: Compressing objects: 100% (30/30), done.
+remote: Total 34 (delta 13), reused 17 (delta 2), pack-reused 0 (from 0)
+Receiving objects: 100% (34/34), 11.39 KiB | 685.00 KiB/s, done.
+Resolving deltas: 100% (13/13), done.
+```
+
+```shell
+cd rpcats/
+```
+
+### Change to current working branch
+
+List the branches in the repo
+
+```shell
+git branch -a
+
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/initial_development
+  remotes/origin/main
 ```
