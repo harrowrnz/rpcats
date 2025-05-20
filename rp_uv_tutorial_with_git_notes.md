@@ -1,13 +1,8 @@
-# RealPython uv Tutorial & Git + GitHub Notes
+# RealPython uv Tutorial & Git & GitHub Notes
 
 ## Background
 
-While Ive been using astral's uv for a while as a replacement for pip, Id never really explored using it for projects.
-
-When RealPython did a tutorial on it, I felt it was about time to look into starting to use it more fully. 
 See [Managing Python Projects With uv: An All-in-One Solution – Real Python](https://realpython.com/python-uv/)
-
-Alongside this, Im also working with git for the first time, and putting this project into github. 
 
 ## Tutorial Synopsis
 
@@ -16,10 +11,16 @@ Alongside this, Im also working with git for the first time, and putting this pr
 #### Ubunutu
 
 On Ubutunu, snap is the easiest as it should auto-update, though isnt always the absolutely latest release
+```shell
+sudo snap install astral-uv --classic
+```
 
 #### Mac
 
 install using homebrew and then will again, be auto-updated.
+```shell
+brew install uv
+```
 
 ### Create uv Project
 
