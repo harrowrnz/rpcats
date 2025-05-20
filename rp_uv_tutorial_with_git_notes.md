@@ -403,11 +403,7 @@ To https://github.com/harrowrnz/rpcats.git
 > 
 > ChatGPT has provided me some suggestions for the GitHub config, as well as local git hook setup to stop merges to main locally.
 
-
-
-- [ ]  :memo: **TODO**: Add suggested github and git local hook suggestions
-
-
+- [ ] :memo: **TODO**: Add suggested github and git local hook suggestions
 
 Change into to main branch
 
@@ -599,14 +595,30 @@ remote: Counting objects: 100% (34/34), done.
 remote: Compressing objects: 100% (30/30), done.
 remote: Total 34 (delta 13), reused 17 (delta 2), pack-reused 0 (from 0)
 Receiving objects: 100% (34/34), 11.39 KiB | 685.00 KiB/s, done.
-Resolving deltas: 100% (13/13), done.
+Resolving deltas: 100% (13/13), done. Change to current working branch
 ```
+
+### Review listing of current branch
+
+Change into repo folder
 
 ```shell
 cd rpcats/
 ```
 
-### Change to current working branch
+```shell
+ls -al
+
+total 40
+drwxr-xr-x@  8 harrowfr  staff   256 21 May 03:14 .
+drwxr-xr-x@  8 harrowfr  staff   256 21 May 03:14 ..
+drwxr-xr-x@ 12 harrowfr  staff   384 21 May 03:14 .git
+-rw-r--r--@  1 harrowfr  staff   109 21 May 03:14 .gitignore
+-rw-r--r--@  1 harrowfr  staff     5 21 May 03:14 .python-version
+-rw-r--r--@  1 harrowfr  staff  1172 21 May 03:14 README.md
+-rw-r--r--@  1 harrowfr  staff    84 21 May 03:14 main.py
+-rw-r--r--@  1 harrowfr  staff   188 21 May 03:14 pyproject.toml
+```
 
 List the branches in the repo
 
@@ -617,4 +629,128 @@ git branch -a
   remotes/origin/HEAD -> origin/main
   remotes/origin/initial_development
   remotes/origin/main
+```
+
+```shell
+git checkout initial_development
+
+branch 'initial_development' set up to track 'origin/initial_development'.
+Switched to a new branch 'initial_development'
+```
+
+Review rpcats directory, note changes compared with previous listing
+
+```shell
+ls -al
+
+total 88
+drwxr-xr-x@ 11 harrowfr  staff    352 21 May 03:14 .
+drwxr-xr-x@  8 harrowfr  staff    256 21 May 03:14 ..
+drwxr-xr-x@ 12 harrowfr  staff    384 21 May 03:14 .git
+-rw-r--r--@  1 harrowfr  staff    109 21 May 03:14 .gitignore
+-rw-r--r--@  1 harrowfr  staff      5 21 May 03:14 .python-version
+-rw-r--r--@  1 harrowfr  staff   1172 21 May 03:14 README.md
+-rw-r--r--@  1 harrowfr  staff   1485 21 May 03:14 main.py
+-rw-r--r--@  1 harrowfr  staff   1014 21 May 03:14 markdown_callout_shortcodes.md
+-rw-r--r--@  1 harrowfr  staff    188 21 May 03:14 pyproject.toml
+-rw-r--r--@  1 harrowfr  staff  14473 21 May 03:14 rp_uv_tutorial_with_git_notes.md
+-rw-r--r--@  1 harrowfr  staff    126 21 May 03:14 uv.lock
+```
+
+### Commit Changes to Local Git
+
+Ive now updated this document with the notes for moving computer, so push changes to GitHub before going to bed :smile:
+
+Check for changes to branch (ie any new files)
+
+```shell
+git status
+
+On branch initial_development
+Your branch is up to date with 'origin/initial_development'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+    modified:   rp_uv_tutorial_with_git_notes.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+```shell
+git commit -a -m "Moved computer & updated tutorial document"
+
+[initial_development 35ac510] Moved computer & updated tutorial document
+ 1 file changed, 75 insertions(+), 23 deletions(-) 
+```
+
+Confirm changes commited
+
+```shell
+git status
+
+On branch initial_development
+Your branch is ahead of 'origin/initial_development' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+
+### Push to GitHub
+
+As I have moved computer, need to reauthenticate to GitHub
+
+```shell
+gh auth login
+
+? Where do you use GitHub? GitHub.com
+? What is your preferred protocol for Git operations on this host? HTTPS
+? Authenticate Git with your GitHub credentials? Yes
+? How would you like to authenticate GitHub CLI? Login with a web browser
+
+! First copy your one-time code: 1234-5678
+Press Enter to open https://github.com/login/device in your browser... 
+✓ Authentication complete.
+- gh config set -h github.com git_protocol https
+✓ Configured git protocol
+✓ Logged in as harrowrnz
+```
+
+Now push branch
+
+```shell
+git push
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.21 KiB | 1.21 MiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/harrowrnz/rpcats.git
+   2839fa6..35ac510  initial_development -> initial_development
+```
+
+Review my local git config - need to update this so that Im using my personal GitHub username for commits on this repo.
+
+- [ ] :memo: **TODO**: Set config for local repo to personal GitHub account
+
+```shell
+git config --list
+init.defaultbranch=main
+user.email=first.last@work.com
+user.name=First Last
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+core.precomposeunicode=true
+remote.origin.url=https://github.com/harrowrnz/rpcats.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+branch.initial_development.remote=origin
+branch.initial_development.merge=refs/heads/initial_development
 ```
