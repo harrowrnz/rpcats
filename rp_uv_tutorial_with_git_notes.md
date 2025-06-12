@@ -402,6 +402,7 @@ To https://github.com/harrowrnz/rpcats.git
 > I think you should do a pull request in GitHub to merge a feature to main. Doing it this way somewhat breaks the model if you had multiple people working on the repo. 
 > 
 > ChatGPT has provided me some suggestions for the GitHub config, as well as local git hook setup to stop merges to main locally.
+> See: [https://chatgpt.com/share/684a5ea5-b084-8005-9fa7-6aaf93c2c580](https://chatgpt.com/share/684a5ea5-b084-8005-9fa7-6aaf93c2c580) for details
 
 - [ ] :memo: **TODO**: Add suggested github and git local hook suggestions
 
@@ -755,4 +756,83 @@ branch.initial_development.remote=origin
 branch.initial_development.merge=refs/heads/initial_development
 ```
 
+## Back to Tutorial
 
+After having moved around computers and updating the readme a few times, we're back to the tutorial at this point:
+[https://realpython.com/python-uv/#using-uv-for-dependency-management](https://realpython.com/python-uv/#using-uv-for-dependency-management)
+
+### Update the Code
+Have commented out the original uv boilerplate code in `main.py` and added the rpcats code as directed.
+After adding the new rpcats code, running the app gives a failure (which is expected as requests hasnt been added to the .venv as yet)
+
+```shell
+uv run main.py
+
+Traceback (most recent call last):
+  File "/Users/harrowfr/code/python/rpcats/main.py", line 12, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+```
+
+### Add the library
+Use uv to add the requests library:
+
+```shell
+uv add requests
+
+Resolved 6 packages in 220ms
+Prepared 1 package in 146ms
+Installed 5 packages in 9ms
+ + certifi==2025.4.26
+ + charset-normalizer==3.4.2
+ + idna==3.10
+ + requests==2.32.4
+ + urllib3==2.4.0
+```
+
+pyproject.toml is updated with the dependant library (see callout below)
+```toml
+[project]
+name = "rpcats"
+version = "0.1.0"
+description = "RealPython uv Project Tutorial, also using local Git & GitHub"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "requests>=2.32.4",#  👈 Added for HTTP requests
+]
+```
+
+The app now runs and produces an error message and help screen (I need to specify a breed of cat)
+```shell
+uv run main.py
+
+usage: main.py [-h] breed
+main.py: error: the following arguments are required: breed
+```
+
+```shell
+uv run main.py -h
+
+usage: main.py [-h] breed
+
+Get information about cat breeds
+
+positional arguments:
+  breed       Name of cat breed (e.g., 'Siamese')
+
+options:
+  -h, --help  show this help message and exit
+```
+
+```shell
+uv run main.py Siamese
+
+-----------Siamese------------
+Origin: Thailand
+Temperament: Active, Agile, Clever, Sociable, Loving, Energetic
+Life Span: 12 - 15 years
+Weight: 8 - 15 lbs
+
+Learn more: https://en.wikipedia.org/wiki/Siamese_(cat)
+```
