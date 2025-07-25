@@ -12,3 +12,5 @@
 
 Random Text for Testing
 More random text
+
+> :information_source: **Note**: This is info.

@@ -62,8 +62,8 @@ rpcats/
 Tell git who I am:
 
 ```shell
-git config --global user.email "harrowr@gmail.com"
-git config --global user.name "HarrowRNZ"
+git config --global user.email "email.address@mailserver.com"
+git config --global user.name "MyGitUsername"
 ```
 
 Set git to use main instead of master:
@@ -75,8 +75,8 @@ git config --global init.defaultBranch main
 ```shell
 git config --list
 
-user.email=harrowr@gmail.com
-user.name=HarrowRNZ
+user.email=email.address@mailserver.com
+user.name=MyGitUsername
 init.defaultbranch=main
 core.repositoryformatversion=0
 core.filemode=true
